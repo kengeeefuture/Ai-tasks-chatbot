@@ -16,18 +16,19 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="bg-white rounded-xl shadow-md w-full max-w-md p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center">My Tasks</h1>
+        {/* Heading in black */}
+        <h1 className="text-2xl font-bold mb-4 text-center text-black">My Tasks</h1>
 
         <div className="flex mb-4">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="New task..."
-            className="flex-1 border border-gray-300 rounded-l px-3 py-2 focus:outline-none"
+            className="flex-1 border border-gray-300 rounded-l px-3 py-2 focus:outline-none text-black placeholder-gray-500"
           />
           <button
             onClick={addTask}
-            className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
+            className="bg-blue-500 text-black px-4 py-2 rounded-r hover:bg-blue-600"
           >
             Add
           </button>
@@ -37,7 +38,7 @@ export default function Home() {
           {tasks.map((t) => (
             <li
               key={t.id}
-              className="p-2 bg-gray-50 rounded border border-gray-200"
+              className="p-2 bg-gray-50 rounded border border-gray-200 text-black"
             >
               {t.title}
             </li>
