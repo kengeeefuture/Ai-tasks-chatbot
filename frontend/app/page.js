@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2 } from "lucide-react"; // 👈 import trash icon
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
@@ -31,8 +30,18 @@ export default function Home() {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
+  // Handle Enter key in input
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      addTask();
+    }
+  };
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <main
+  className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed p-6"
+  style={{ backgroundImage: "url('/tasks-bg.jpg')" }}
+>
       <div className="bg-white rounded-xl shadow-md w-full max-w-md p-6">
         <h1 className="text-2xl font-bold mb-4 text-center text-black">
           My Tasks
@@ -42,6 +51,7 @@ export default function Home() {
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            onKeyDown={handleKeyPress} // 👈 Add Enter key support
             placeholder="New task..."
             className="flex-1 border border-gray-300 rounded-l px-3 py-2 focus:outline-none text-black placeholder-gray-500"
           />
@@ -61,11 +71,12 @@ export default function Home() {
             >
               <span>{t.title}</span>
               <button
-                onClick={() => deleteTask(t.id)}
-                className="text-red-500 hover:text-red-700"
-              >
-                <Trash2 size={20} /> {/* 👈 trash can icon */}
-              </button>
+  onClick={() => deleteTask(t.id)}
+  className="text-blue-500 hover:text-blue-700 font-bold text-xl tracking-wider"
+>
+  —
+</button>
+
             </li>
           ))}
         </ul>
